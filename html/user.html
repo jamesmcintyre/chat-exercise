@@ -1,0 +1,11 @@
+<h1>{{state}}</h1>
+
+
+<label for="email" >email</label>
+<input ng-model="user.email" type="text">
+<label for="password" >password</label>
+<input ng-model="user.password" type="text">
+
+<label for="password2" ng-show="state === 'register'" >password2</label>
+<input ng-model="user.password2"  ng-show="state === 'register'" type="text">
+<button ng-click="submit(user)">{{state}}</button>

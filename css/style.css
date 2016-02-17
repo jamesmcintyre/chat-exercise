@@ -1,0 +1,16 @@
+
+
+.nameEdit {
+  font-family: sans-serif;
+  font-size: xx-large;
+  font-weight: 100;
+  color: #6F6F6F;
+  background-color: #ECECEC;
+  margin: 10px;
+  padding-top: 5px;
+  padding-left: 6px;
+}
+
+.formContain {
+  width: 33vw;
+}

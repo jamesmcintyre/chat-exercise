@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/firebase/firebase.js"></script>
+  <script src="/bower_components/angularfire/dist/angularfire.min.js"></script>
+  <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
+  <script src="/js/module.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+
+
+
+</head>
+<body ng-app="fireapp" ng-controller='mainCtrl'>
+
+<h1>angular fire</h1>
+<div ng-controller="navCtrl" class="navdiv">
+<button ui-sref='home'>home</button>
+
+<button ng-show="!authData" ui-sref='user.login'>user.login</button>
+
+<button ng-show="!authData" ui-sref='user.register'>user.register</button>
+
+<button ng-show="authData" ui-sref='user.profile'>profile</button>
+
+
+
+<button ng-show="authData" ng-click="logout()">logout</button>
+</div>
+<ui-view></ui-view>
+
+<!-- <input type="text" ng-model="user.firstname" ng-change="user.$save()">
+<input type="text" ng-model="user.lastname" ng-change="user.$save()">
+
+<pre>{{ user || json }}</pre>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<ul>
+  <li ng-repeat='item in list track by $index'>{{item}}</li>
+</ul>
+
+<input type="text" ng-model='text'>
+<button ng-click='add(text)'>Add</button> -->
+
+
+
+
+
+
+
+
+</body>
+</html>
