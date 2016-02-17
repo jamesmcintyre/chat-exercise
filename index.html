@@ -11,6 +11,8 @@
   <script src="/bower_components/firebase/firebase.js"></script>
   <script src="/bower_components/angularfire/dist/angularfire.min.js"></script>
   <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
+  <script src="/bower_components/moment/min/moment.min.js"></script>
+  <script src="/bower_components/angular-moment/angular-moment.min.js"></script>
   <script src="/js/module.js"></script>
   <script src="/js/controllers.js"></script>
   <script src="/js/services.js"></script>
@@ -29,6 +31,8 @@
 <button ng-show="!authData" ui-sref='user.register'>user.register</button>
 
 <button ng-show="authData" ui-sref='user.profile'>profile</button>
+
+<button ng-show="authData" ui-sref='chat'>chat</button>
 
 
 

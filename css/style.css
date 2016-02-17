@@ -1,4 +1,7 @@
 
+body{
+  font-family: sans-serif;
+}
 
 .nameEdit {
   font-family: sans-serif;
@@ -13,4 +16,19 @@
 
 .formContain {
   width: 33vw;
+}
+
+.chatImg {
+  max-height: 25px;
+}
+
+
+.underoo {
+  display: inline-flex;
+  font-size: small;
+}
+
+.messageTxt {
+  font-size: x-large;
+
 }

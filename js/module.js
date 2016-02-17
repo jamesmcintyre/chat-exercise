@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('fireapp', ['firebase', 'ui.router', 'ngStorage']);
+var app = angular.module('fireapp', ['firebase', 'ui.router', 'ngStorage', 'angularMoment']);
 
 app.constant('fbUrl', 'https://jmmphotos.firebaseio.com/');
 
@@ -15,7 +15,7 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('user.profile', {url: '/profile', templateUrl: '/html/profile.html', controller: 'profileCtrl',
     onEnter: function($state, fbAuth){
       if( !fbAuth.$getAuth() ){
-        return $state.go('home');
+        return $state.go('login');
       }
     }
   })
@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('chat', {url: '/chat', templateUrl: '/html/chat.html', controller: 'chatCtrl',
     onEnter: function($state, fbAuth){
       if( !fbAuth.$getAuth() ){
-        return $state.go('home');
+        return $state.go('login');
       }
     }
   })

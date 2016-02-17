@@ -1,17 +1,17 @@
 
 var app = angular.module('fireapp')
 
-app.controller('mainCtrl', function($scope, $window, $firebaseArray, List, User){
+app.controller('mainCtrl', function($scope, $window, $firebaseArray, User){
 
-  $scope.list = List;
-
-  //$scope.makelist = function(name){
-  // MakeList('clogs');
-  // }
-
-  $scope.add = function(text){
-    $scope.list.$add(text);
-  };
+  // $scope.list = List;
+  //
+  // //$scope.makelist = function(name){
+  // // MakeList('clogs');
+  // // }
+  //
+  // $scope.add = function(text){
+  //   $scope.list.$add(text);
+  // };
 
 
   $scope.user = User;
@@ -101,7 +101,7 @@ app.controller('profileCtrl', function($scope, $state, AuthSvc, fbAuth, $firebas
       if(!profile.profileImg){
         profile.profileImg = authData.password.profileImageURL || 'https://www.governmentjobs.com/Content/Images/Icons/profile-icon.png';
       }
-      
+
       console.log(authData.password.profileImageURL+'   '+profile.profileImg);
 
     })
@@ -115,6 +115,56 @@ app.controller('profileCtrl', function($scope, $state, AuthSvc, fbAuth, $firebas
   //$scope.profile.$save()
 
 });
+
+//---------------------------------------------------
+
+
+
+app.controller('chatCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAuth, $localStorage, ProfileSvc, Messages){
+
+  console.log('chat ctrl');
+  // var timetest = new Date();
+  // console.log(timetest);
+
+  $scope.ready = false;
+  var userUID = $localStorage.authData.uid;
+  var userProfile = ProfileSvc.getProfile(userUID);
+
+  // console.log('chat user profile: ', userProfile);
+  $scope.messages = Messages;
+
+  $scope.messages.$loaded()
+    .then(function(data){
+
+      $scope.ready = true;
+
+    })
+
+  //$scope.makelist = function(name){
+  // MakeList('clogs');
+  // }
+
+  $scope.add = function(messageObj){
+    // var time = Date();
+    var time = Date();
+    // console.log(messageObj);
+    messageObj.timestamp = time;
+    messageObj.userHandle = userProfile.handle;
+    messageObj.userUID = userProfile.$id;
+    messageObj.userIMG = userProfile.profileImg;
+    $scope.messages.$add(messageObj);
+  };
+
+
+});
+
+
+
+
+
+
+
+//-------------------------------------------------
 
 app.directive("contenteditable", function() {
   return {

@@ -46,6 +46,22 @@ app.factory('Profile', function($firebaseObject, fbRef){
 
 
 
+app.service('ProfileSvc', function($firebaseObject, fbRef){
+
+  this.getProfile = function(userUID){
+    var profile = fbRef.child('profiles').child(userUID);
+    return $firebaseObject(profile);
+
+  }
+
+
+});
+
+
+
+
+
+
 ///--------------------------------------- records
 
 // app.factory('MakeList', function($firebaseArray, fbRef){
@@ -62,9 +78,9 @@ app.factory('fbRef', function($window, fbUrl){
 })
 
 
-app.factory('List', function($firebaseArray, fbRef){
-  var newList = fbRef.child('newlist');
-  return $firebaseArray(newList);
+app.factory('Messages', function($firebaseArray, fbRef){
+  var listMessages = fbRef.child('MessageHistory');
+  return $firebaseArray(listMessages);
 });
 
 app.factory('User', function($firebaseObject, fbRef){
