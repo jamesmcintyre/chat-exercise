@@ -22,7 +22,7 @@ app.controller('userCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAu
         AuthSvc.login(user)
         .then(function(response){
           $localStorage.authData = response;
-          $state.go('home');
+          $state.go('profile');
 
         }, function(){
           user.password = '';
