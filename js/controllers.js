@@ -3,29 +3,14 @@ var app = angular.module('fireapp')
 
 app.controller('mainCtrl', function($scope, $window, $firebaseArray, User){
 
-  // $scope.list = List;
-  //
-  // //$scope.makelist = function(name){
-  // // MakeList('clogs');
-  // // }
-  //
-  // $scope.add = function(text){
-  //   $scope.list.$add(text);
-  // };
-
-
   $scope.user = User;
 
 });
-//
-// Auth.login()
-// Auth.register()
+
 
 
 app.controller('userCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAuth, $localStorage){
 
-  console.log('userCtrl');
-  console.log($state.current);
 
   $scope.state = $state.current.name.split('.')[1];
 
@@ -36,7 +21,6 @@ app.controller('userCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAu
       if(user.email.length + user.password.length > 2){
         AuthSvc.login(user)
         .then(function(response){
-          console.log(response);
           $localStorage.authData = response;
           $state.go('home');
 
@@ -55,7 +39,6 @@ app.controller('userCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAu
 
       AuthSvc.register(user)
       .then(function(authData){
-        console.log(authData);
         $state.go('user.login');
       })
       .catch(function(err){
@@ -73,7 +56,6 @@ app.controller('userCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAu
 
 app.controller('navCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAuth){
   fbAuth.$onAuth(function(authData){
-    console.log('authdata', authData);
     $scope.authData = authData;
   });
 
@@ -86,7 +68,6 @@ app.controller('navCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAut
 
 
 app.controller('profileCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAuth, $localStorage, Profile){
-  console.log('profile controller');
 
   $scope.change = false;
   //getuid
@@ -102,7 +83,7 @@ app.controller('profileCtrl', function($scope, $state, AuthSvc, fbAuth, $firebas
         profile.profileImg = authData.password.profileImageURL || 'https://www.governmentjobs.com/Content/Images/Icons/profile-icon.png';
       }
 
-      console.log(authData.password.profileImageURL+'   '+profile.profileImg);
+
 
     })
 
@@ -110,27 +91,19 @@ app.controller('profileCtrl', function($scope, $state, AuthSvc, fbAuth, $firebas
     $scope.changePic = function(){
       $scope.change = !$scope.change;
     }
-  //$scope.profile.firstName = 'James';
-
-  //$scope.profile.$save()
 
 });
-
-//---------------------------------------------------
-
 
 
 app.controller('chatCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAuth, $localStorage, ProfileSvc, Messages){
 
-  console.log('chat ctrl');
-  // var timetest = new Date();
-  // console.log(timetest);
+
 
   $scope.ready = false;
   var userUID = $localStorage.authData.uid;
   var userProfile = ProfileSvc.getProfile(userUID);
 
-  // console.log('chat user profile: ', userProfile);
+
   $scope.messages = Messages;
 
   $scope.messages.$loaded()
@@ -140,14 +113,12 @@ app.controller('chatCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAu
 
     })
 
-  //$scope.makelist = function(name){
-  // MakeList('clogs');
-  // }
+
 
   $scope.add = function(messageObj){
-    // var time = Date();
+
     var time = Date();
-    // console.log(messageObj);
+
     messageObj.timestamp = time;
     messageObj.userHandle = userProfile.handle;
     messageObj.userUID = userProfile.$id;
@@ -160,12 +131,6 @@ app.controller('chatCtrl', function($scope, $state, AuthSvc, fbAuth, $firebaseAu
 
 
 
-
-
-
-
-//-------------------------------------------------
-
 app.directive("contenteditable", function() {
   return {
     restrict: "A",
@@ -177,7 +142,7 @@ app.directive("contenteditable", function() {
       }
 
       ngModel.$render = function() {
-        element.html(ngModel.$viewValue || "");
+        element.html(ngModel.$viewValue || element[0].dataset.val || 'oops!');
       };
 
       element.bind("blur keyup change", function() {

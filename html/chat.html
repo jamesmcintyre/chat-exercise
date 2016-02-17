@@ -1,18 +1,14 @@
 
 <h1>Chat</h1>
 
-
-
-  <div ng-if="ready" ng-repeat="message in messages track by $index "">
-    <div class="messageTxt"><p>{{ message.text }}</p></div>
-    <div class="underoo">
-    <img class="chatImg" src="{{message.userIMG}}" alt="">
-    <p>{{message.userHandle}}</p>
-    <span am-time-ago="message.timestamp"></span>
+    <div ng-if="ready" ng-repeat="message in messages track by $index">
+      <div class="messageTxt"><p>{{ message.text }}</p></div>
+      <div class="underoo">
+      <img class="chatImg" src="{{message.userIMG}}" alt="">
+      <p>{{message.userHandle}}</p>
+      <span am-time-ago="message.timestamp"></span>
+      </div>
     </div>
-  </div>
-
-
 
 <input type="text" ng-model="messageObj.text">
 <button ng-click="add(messageObj)">Send</button>

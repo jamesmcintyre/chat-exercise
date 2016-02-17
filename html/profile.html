@@ -1,11 +1,11 @@
-<h1>profile</h1>
+<h1>CLICK THE PICTURE OR TEXT BELOW TO CHANGE IT!</h1>
 
 
 <div class="formContain">
 <img ng-click="changePic()" src='{{profile.profileImg}}' title="Click your profile picture to change it!">
 <div ng-if="change" class="nameEdit" contenteditable ng-model="profile.profileImg"></div>
 
-<div class="nameEdit" contenteditable ng-model="profile.firstName"></div>
-<div class="nameEdit" contenteditable ng-model="profile.lastName"></div>
-<div class="nameEdit" contenteditable ng-model="profile.handle"></div>
+<div class="nameEdit" data-val="First Name" contenteditable ng-model="profile.firstName"></div>
+<div class="nameEdit" data-val="Last Name" contenteditable ng-model="profile.lastName"></div>
+<div class="nameEdit" data-val="Handle" contenteditable ng-model="profile.handle"></div>
 </div>
